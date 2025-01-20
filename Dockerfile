@@ -12,4 +12,3 @@ RUN cd /home/expl \
     && make
 
 WORKDIR /home/expl/xsm_expl
-
