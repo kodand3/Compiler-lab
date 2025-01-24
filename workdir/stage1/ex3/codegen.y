@@ -45,6 +45,5 @@ int yyerror(char const *s)
 
 int main(void) {
 	yyparse();
-	
 	return 0;
 }

@@ -141,51 +141,26 @@ int main() {
 
 /* Exercise - d */
 
-
 %{
-    #include <stdio.h>
+    #include<stdio.h>
+    #include<ctype.h>
 %}
 
-digit [0-9]
-lower [a-z]
-upper [A-Z]
-number {digit}+
-floating {digit}+\.{digit}+
-identifier ({lower}|{upper})+({lower}|{upper}|{digit})*
-op     [-|+|*|/|=]
-singleComment \/\/.*
-newline \n
-multiComment   \/\*([^*]|\*+[^*/])*\*\/
+lower    [a-z]
+upper    [A-Z]
+number [0-9]
+
+%option noyywrap
 
 %%
-{number}  { 
-    printf("Found : %d",atoi(yytext)); 
-}
-{op}      { printf("operator"); }
-{floating} {
-    printf("Found : %s", yytext);
-}
-{identifier} {
-    if(yyleng == 3 && yytext[0] == 'A')
-        cnt++;
-}
-[ \t]+ ;
-{singleComment} {
-    printf("Comment is %s", yytext);
-}
-{multiComment} {
-    printf("Comment is %s", yytext);
-}
+("//")(.)*       {printf("single line comment:%s\n", yytext);}
+("/*")({lower}|{upper}|{number}|"\n"|" ")*("*/") {printf("multiline comment:%s\n", yytext);}
 %%
 
-int yywrap() {
-    return 1;
+int main()
+{
+  yylex();
+  return 0;
 }
-
-int main() {
-    yylex();
-    return 0;
-}
-
 
 

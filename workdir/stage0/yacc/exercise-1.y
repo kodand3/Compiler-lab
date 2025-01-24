@@ -1,103 +1,117 @@
 %{
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 
-int nesting_level = 0; // To track nesting level
+int lvl = 0;
+
 %}
 
-/* Tokens */
-%token IF ELSE LPAREN RPAREN LBRACE RBRACE SEMICOLON ASSIGN ID NUMBER RELOP
+%token DIGIT LETTER IF
+%left '+' '-'
+%left '*' '/'
 
-/* Precedence to resolve dangling else */
-%nonassoc IFX
-%nonassoc ELSE
+%%
+start : stmt '\n'{exit(1);};
+
+stmt :  if_stmt{printf("IF seen\n");}| 
+        stmt stmt |
+        var '=' expr';'{printf("var = expr seen\n");}
+;
+
+if_stmt : IF '(' cond_stmt ')' '{' stmt '}' {
+                                                 printf("IF level %d closed: \n", --lvl);
+                                             }
+;
+
+cond_stmt : cond_stmt '&''&'  cond_stmt{printf("&& cond seen\n");}|
+            cond_stmt '|''|' cond_stmt{printf("|| cond seen\n");}|
+            expr '>' expr {printf("> cond seen\n");}|
+            expr '<' expr {printf("< cond seen\n");}|
+            expr '=''=' expr {printf("== cond seen\n");}
+;
+
+expr : expr '+' expr|
+       expr '*' expr|
+       expr '/' expr|
+       expr '-' expr|
+       '('expr')'|
+       var {printf("var reduced to expr\n");}|
+       num
+;
+
+var : var DIGIT|
+      var LETTER|
+      LETTER
+;
+
+num : num DIGIT|
+      DIGIT
+;
 
 %%
 
-/* Grammar Rules */
-program : stmt { printf("Valid IF statement with nesting level: %d\n", nesting_level); }
-        ;
-
-stmt : IF LPAREN condition RPAREN stmt %prec IFX
-        { 
-            nesting_level++;
-            printf("Nesting Level: %d\n", nesting_level); 
-        }
-     | IF LPAREN condition RPAREN stmt ELSE stmt
-        { 
-            nesting_level++;
-            printf("Nesting Level: %d\n", nesting_level); 
-        }
-     | ID ASSIGN expr SEMICOLON
-        { 
-            printf("Assignment detected.\n"); 
-        }
-     ;
-
-condition : expr RELOP expr
-          ;
-
-expr : ID
-     | NUMBER
-     ;
-
-%%
-
-/* Error Handling */
-void yyerror(const char *s) {
-    printf("Error: %s\n", s);
+int yyerror()
+{
+    printf("Error");
 }
 
-/* Lexer */
-int yylex() {
+int yylex()
+{
     int c;
-
-    // Skip whitespace and newlines
-    while ((c = getchar()) == ' ' || c == '\t' || c == '\n');
-
-    // Parentheses, braces, and semicolons
-    if (c == '(') return LPAREN;
-    if (c == ')') return RPAREN;
-    if (c == '{') return LBRACE;
-    if (c == '}') return RBRACE;
-    if (c == ';') return SEMICOLON;
-    if (c == '=') return ASSIGN;
-
-    // Relational operators
-    if (c == '<' || c == '>' || c == '!') {
-        int next = getchar();
-        if (next == '=') return RELOP; // <=, >=, !=
-        ungetc(next, stdin);
-        return RELOP; // <, >, !=
+    c = getchar();
+    if (isdigit(c))
+    {
+        yylval = c - '0';
+        return DIGIT;
     }
 
-    // Identifiers (IDs)
-    if (isalpha(c)) {
-        while (isalnum(c)) c = getchar();
-        ungetc(c, stdin);
-        return ID;
-    }
+    if (isalpha(c))
+    {
 
-    // Numbers
-    if (isdigit(c)) {
-        while (isdigit(c)) c = getchar();
-        ungetc(c, stdin);
-        return NUMBER;
-    }
+        if (c == '_')
+            return LETTER;
+        if (c == 'i')
+        {
+            c = getchar();
+            if (c == 'f')
+            {
+                c = getchar();
+                if (c == '(' || c == ' ')
+                {
+                    ungetc(c, stdin);
+                    printf("IF level %d opened: \n", lvl++);
 
-    // Keywords: if, else
-    if (c == 'i') {
-        if (getchar() == 'f') return IF;
+                    return IF;
+                }
+                else
+                {
+                    ungetc(c, stdin);
+                    ungetc('f', stdin);
+                    return LETTER;
+                }
+            }
+            else
+            {
+                ungetc(c, stdin);
+                return LETTER;
+            }
+        }
+        return LETTER;
     }
-    if (c == 'e') {
-        if (getchar() == 'l' && getchar() == 's' && getchar() == 'e') return ELSE;
+    else if (c == ' ')
+    {
+        yylex(); /*This is to ignore whitespaces in the input*/
     }
-
-    return c; // Return unmatched characters as-is
+    else
+    {
+        return c;
+    }
 }
 
-int main() {
+int main()
+{
     yyparse();
-    return 0;
+    return 1;
 }

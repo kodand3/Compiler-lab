@@ -1,0 +1,6 @@
+#!/bin/bash
+
+yacc -d task-1.y
+lex task-1.l
+gcc task-1.c y.tab.c lex.yy.c -o ans -lfl
+./ans $1
