@@ -1,0 +1,10 @@
+begin
+read(n);
+a=0;
+while(n>0)do
+	n=n-1;
+	read(b);
+	a=a+b;
+endwhile;
+write(a);
+end;

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+yacc -d codegen.y
+lex codegen.l
+gcc codegen.c y.tab.c lex.yy.c -o ans -lfl
+./ans $1
