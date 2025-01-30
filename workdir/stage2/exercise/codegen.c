@@ -194,6 +194,7 @@ int codegen(struct tnode* t) {
                             l = codegen(t->right);
                             addr = *(t->left->varname)-'a' + 4096;
                             fprintf(target, "MOV [%d],R%d\n", addr, l);
+                            freereg();
                             return EMPTY_REGISTER;
                             break;
 

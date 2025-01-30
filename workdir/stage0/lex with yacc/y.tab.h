@@ -1,7 +1,8 @@
 #ifndef _yy_defines_h_
 #define _yy_defines_h_
 
-#define VARIABLE 257
+#define CHAR 257
+#define NEWLINE 258
 #ifdef YYSTYPE
 #undef  YYSTYPE_IS_DECLARED
 #define YYSTYPE_IS_DECLARED 1
@@ -10,7 +11,6 @@
 #define YYSTYPE_IS_DECLARED 1
 typedef union YYSTYPE {
     char c;
-    char* string;
 } YYSTYPE;
 #endif /* !YYSTYPE_IS_DECLARED */
 extern YYSTYPE yylval;

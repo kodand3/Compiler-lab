@@ -1,0 +1,8 @@
+begin
+    a=2;
+    repeat
+        write(a);
+        a=a-2;
+        write(a);
+    until(a<=0);
+end;

@@ -17,7 +17,6 @@
 
 "if"	    { return IF; }
 "then"	    { return THEN; }
-
 "while"	    {return WHILE;}
 "do"	    {return DO;}
 "endif"	    {return ENDIF;}
@@ -33,9 +32,16 @@
     return CONTINUE;
 }
 
+"repeat" {
+    return REPEAT;
+}
+
+"until" {
+    return UNTIL;
+}
+
 [a-z]   {
-    yylvaendif"	{return ENDIF;}
-"else"	{return ELSE;}l.no = createTreeNode(-1, TYPE_INT, yytext, NODETYPE_ID, NULL, NULL); 
+    yylval.no = createTreeNode(-1, TYPE_INT, yytext, NODETYPE_ID, NULL, NULL); 
     return ID;
 }
 [0-9]+	{

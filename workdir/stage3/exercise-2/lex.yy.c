@@ -1891,7 +1891,7 @@ int computeAddr(int line) {
 
 void process_instruction(const char *yytext, int i, int label_start_offset, FILE *fp) {
     char command[100] = "";
-    strncpy(command, yytext, i + 1); // Extract the command part (e.g., "CALL ")
+    strncpy(command, yytext, i + 1); // Extract the command part (like "CALL ")
 
     char temp_label[10] = "";
     int j = i + label_start_offset;

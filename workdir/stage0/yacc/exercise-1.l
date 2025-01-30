@@ -18,7 +18,7 @@ lower [A-Z]
                             return LETTER;
                              }
 
-('+'|'-'|'*'|'/') {
+("+"|'-'|'*'|'/') {
                             printf("+");
                             yylval = *yytext;
                             return *yytext;

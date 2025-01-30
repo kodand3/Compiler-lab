@@ -2,6 +2,5 @@
 
 yacc -d exercise-1.y
 lex exercise-1.l
-rm y.tab.c lex.yy.c y.tab.h
-
+gcc y.tab.c lex.yy.c -o ans -lfl
 

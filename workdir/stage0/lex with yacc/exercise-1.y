@@ -21,12 +21,25 @@
 start: expr NEWLINE {printf("\n");exit(0);}
      ;
 
-expr: expr '*' expr {printf("%c", $<c>2);}
+expr: expr '*' expr {printf("MUL ");}
     | expr '-' expr {printf("%c", $<c>2);}
-    | expr '+' expr {printf("%c", $<c>2);}
+    | expr '+' expr {printf("PLUS ");}
     | expr '/' expr {printf("%c", $<c>2);}
     | '(' expr ')' {}
-    | CHAR {printf("%c", $<c>1);}
+    | CHAR {
+        if( $<c>1 == '1' ){
+            printf("ONE ");
+        }
+        else if( $<c>1 == '2' ){
+            printf("TWO ");
+        }
+        else if( $<c>1 == '3' ){
+            printf("THREE ");
+        }
+        else if($<c>1 == '+'){
+            printf("Other char is : %c", $<c>1);
+        }
+    }
     ;
 
 %%

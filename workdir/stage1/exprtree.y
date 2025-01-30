@@ -8,8 +8,8 @@
 
 %union{
 	struct tnode *no;
-	
 }
+
 %type <no> expr NUM program END
 %token NUM PLUS MINUS MUL DIV END
 %left PLUS MINUS
