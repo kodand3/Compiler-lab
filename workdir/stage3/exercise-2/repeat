@@ -1,8 +1,8 @@
 begin
     a=2;
-    repeat
+    do
         write(a);
         a=a-2;
         write(a);
-    until(a<=0);
+    while (a<=0);
 end;

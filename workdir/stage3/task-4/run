@@ -1,7 +1,8 @@
 #!/bin/bash
 
-yacc -d exercise-1.y
-lex exercise-1.l
+yacc -d codegen.y
+lex codegen.l
+gcc codegen.c y.tab.c lex.yy.c -o ans -lfl
 rm y.tab.c lex.yy.c y.tab.h
-
+./ans $1
 
