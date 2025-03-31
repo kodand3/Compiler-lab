@@ -64,12 +64,14 @@ letter [a-zA-Z_]
 [();]   {return *yytext;}
 [\[\]\,\&] {return *yytext;}
 
+
 {letter}({letter}|{num})* {
     variable = (char*)malloc(sizeof(yytext));
     strcpy(variable, yytext);
     yylval.node = createTree(0, NO_TYPE, NODE_VAR, variable, NULL, NULL, NULL);
     return ID;
-    }
+}
+
 \"(\\.|[^\"])*\"    {
     char* str = (char*)malloc(sizeof(yytext));
     strcpy(str, yytext);
