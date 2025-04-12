@@ -115,14 +115,13 @@ union YYSTYPE
 {
 #line 18 "exprtree.y"
 
-       struct ASTNode *node;
-       struct Paramstruct *paramlist;
-       struct Lsymbol *lentry;
-       char *sval;
-       int nval;
-   
+    struct ASTNode *node;
+    struct Paramstruct *paramlist;
+    struct Lsymbol *lentry;
+    char *sval;
+    int nval;
 
-#line 126 "y.tab.h"
+#line 125 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

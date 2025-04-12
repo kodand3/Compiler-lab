@@ -733,8 +733,7 @@ YY_DECL
 	{
 #line 8 "exprtree.l"
 
-
-#line 738 "lex.yy.c"
+#line 737 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -793,138 +792,138 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "exprtree.l"
+#line 9 "exprtree.l"
 { return DECL; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "exprtree.l"
+#line 10 "exprtree.l"
 { return ENDDECL; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 12 "exprtree.l"
+#line 11 "exprtree.l"
 { yylval.nval = atoi(yytext); return NUM; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "exprtree.l"
+#line 12 "exprtree.l"
 { return INT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "exprtree.l"
+#line 13 "exprtree.l"
 { return STRT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "exprtree.l"
+#line 14 "exprtree.l"
 { return BGN; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "exprtree.l"
+#line 15 "exprtree.l"
 { return END; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 17 "exprtree.l"
+#line 16 "exprtree.l"
 { return MAIN; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 18 "exprtree.l"
+#line 17 "exprtree.l"
 { return BREAK; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 19 "exprtree.l"
+#line 18 "exprtree.l"
 { return CONTINUE; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 20 "exprtree.l"
+#line 19 "exprtree.l"
 { return READ; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 21 "exprtree.l"
+#line 20 "exprtree.l"
 { return WRITE; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 22 "exprtree.l"
+#line 21 "exprtree.l"
 { return IF; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 23 "exprtree.l"
+#line 22 "exprtree.l"
 { return THEN; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 24 "exprtree.l"
+#line 23 "exprtree.l"
 { return ELSE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 25 "exprtree.l"
+#line 24 "exprtree.l"
 { return ENDIF; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 26 "exprtree.l"
+#line 25 "exprtree.l"
 { return WHILE; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 27 "exprtree.l"
+#line 26 "exprtree.l"
 { return DO; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 28 "exprtree.l"
+#line 27 "exprtree.l"
 { return ENDWHILE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 29 "exprtree.l"
+#line 28 "exprtree.l"
 { return REPEAT; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 30 "exprtree.l"
+#line 29 "exprtree.l"
 { return UNTIL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 31 "exprtree.l"
+#line 30 "exprtree.l"
 { return RET; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 32 "exprtree.l"
+#line 31 "exprtree.l"
 { return BREAKPOINT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 33 "exprtree.l"
+#line 32 "exprtree.l"
 { return AND; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 34 "exprtree.l"
+#line 33 "exprtree.l"
 { return OR; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 35 "exprtree.l"
+#line 34 "exprtree.l"
 { yylval.sval = strdup(yytext); return ID; }
 	YY_BREAK
 case 27:
 /* rule 27 can match eol */
 YY_RULE_SETUP
-#line 36 "exprtree.l"
+#line 35 "exprtree.l"
 { 
                             yylval.node = TreeCreate(T_STR, N_CONST, NULL, (Constant) strdup(yytext), NULL, NULL, NULL, NULL);
                             return STRC;
@@ -933,25 +932,25 @@ YY_RULE_SETUP
 case 28:
 /* rule 28 can match eol */
 YY_RULE_SETUP
-#line 40 "exprtree.l"
+#line 39 "exprtree.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 41 "exprtree.l"
+#line 40 "exprtree.l"
 { return *yytext; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 42 "exprtree.l"
+#line 41 "exprtree.l"
 { printf("unknown character: %c\n", *yytext); exit(1); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 44 "exprtree.l"
+#line 43 "exprtree.l"
 ECHO;
 	YY_BREAK
-#line 955 "lex.yy.c"
+#line 954 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1956,7 +1955,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 44 "exprtree.l"
+#line 43 "exprtree.l"
 
 
 int yywrap(void) {

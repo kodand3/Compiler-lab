@@ -77,7 +77,6 @@ int yywrap(void) {
         fout = fopen("test.xsm", "w");
         return 0;
     } 
-
     fclose(yyin);
     fclose(fout);
     return 1;

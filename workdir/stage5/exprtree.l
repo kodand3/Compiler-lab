@@ -6,7 +6,6 @@
 %}
 
 %%
-
 "decl"                  { return DECL; }
 "enddecl"               { return ENDDECL; }
 [0-9]+                  { yylval.nval = atoi(yytext); return NUM; }
